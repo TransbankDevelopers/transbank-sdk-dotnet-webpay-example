@@ -11,7 +11,7 @@ namespace TransbankWebpayExampleTest
     [TestClass]
     public abstract class SeleniumTest
     {
-        protected const int iisPort = 64890;
+        protected const int iisPort = 54128;
         private readonly string _applicationName;
         private Process _iisProcess;
         private ChromeOptions _option;
