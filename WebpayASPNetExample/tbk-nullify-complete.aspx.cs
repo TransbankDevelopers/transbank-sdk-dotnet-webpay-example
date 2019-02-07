@@ -7,7 +7,6 @@ namespace TestWebpay
 {
     public partial class tbk_nullify_complete : System.Web.UI.Page
     {
-
         /** Mensaje de Ejecución */
         private string message;
 
@@ -19,7 +18,6 @@ namespace TestWebpay
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
             var configuration = new Configuration()
             {
                 Environment = certificate["environment"],
@@ -40,27 +38,19 @@ namespace TestWebpay
 
             /** Crea URL de Aplicación */
             string sample_baseurl = "http://" + httpHost + selfURL;
-
             HttpContext.Current.Response.Write("<p style='font-weight: bold; font-size: 200%;'>Ejemplos Webpay - Transacci&oacute;n Completa</p>");
-
             string buyOrder;
-
             string tx_step = "";
 
             switch (action)
             {
-
                 default:
-
                     tx_step = "Init";
 
                     try
                     {
-
                         string next_page = sample_baseurl + "?action=nullify";
-
                         HttpContext.Current.Response.Write("<p style='font-weight: bold; font-size: 150%;'>Step: " + tx_step + "</p>");
-
                         HttpContext.Current.Response.Write("<form id='formulario' action=" + next_page + " method='post'>");
                         HttpContext.Current.Response.Write("<fieldset>");
                         HttpContext.Current.Response.Write("<legend>Formulario de Anulaci&oacute;n</legend><br/><br/>");
@@ -73,23 +63,19 @@ namespace TestWebpay
                         HttpContext.Current.Response.Write("<input id='campo3' name='enviar' type='submit' value='Enviar' />");
                         HttpContext.Current.Response.Write("</fieldset>");
                         HttpContext.Current.Response.Write("</form>");
-
                     }
                     catch (Exception ex)
                     {
                         HttpContext.Current.Response.Write("<p style='font-size: 100%; background-color:lightyellow;'><strong>request</strong></br></br>" + new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(request) + "</p>");
                         HttpContext.Current.Response.Write("<p style='font-size: 100%; background-color:lightgrey;'><strong>result</strong></br></br> Ocurri&oacute; un error en la transacci&oacute;n (Validar correcta configuraci&oacute;n de parametros). " + ex.Message + "</p>");
                     }
-
                     break;
 
                 case "nullify":
-
                     tx_step = "nullify";
 
                     try
                     {
-
                         HttpContext.Current.Response.Write("<p style='font-weight: bold; font-size: 150%;'>Step: " + tx_step + "</p>");
 
                         /** Obtiene Información POST */
@@ -117,26 +103,19 @@ namespace TestWebpay
                         request.Add("commercecode", commercecode.ToString());
 
                         var result = webpay.NullifyTransaction.nullify(authorizationCode, authorizedAmount, buyOrder, nullifyAmount, commercecode);
-
                         HttpContext.Current.Response.Write("<p style='font-size: 100%; background-color:lightyellow;'><strong>request</strong></br></br>" + new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(request) + "</p>");
                         HttpContext.Current.Response.Write("<p style='font-size: 100%; background-color:lightgrey;'><strong>result</strong></br></br>" + new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(result) + "</p>");
-
                         message = "Transacci&oacute;n Finalizada";
                         HttpContext.Current.Response.Write(message + "</br></br>");
-
                     }
                     catch (Exception ex)
                     {
                         HttpContext.Current.Response.Write("<p style='font-size: 100%; background-color:lightyellow;'><strong>request</strong></br></br>" + new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(request) + "</p>");
                         HttpContext.Current.Response.Write("<p style='font-size: 100%; background-color:lightgrey;'><strong>result</strong></br></br> Ocurri&oacute; un error en la transacci&oacute;n (Validar correcta configuraci&oacute;n de parametros). " + ex.Message + "</p>");
                     }
-
                     break;
-
             }
-
             HttpContext.Current.Response.Write("</br><a href='default.aspx'>&laquo; volver a index</a>");
-
         }
     }
 }

@@ -7,7 +7,6 @@ namespace TestWebpay
 {
     public partial class tbk_complete : System.Web.UI.Page
     {
-
         /** Mensaje de Ejecución */
         private string message;
 
@@ -19,12 +18,10 @@ namespace TestWebpay
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
             var configuration = new Configuration()
             {
                 Environment = certificate["environment"],
                 CommerceCode = certificate["commerce_code"],
-                //TbkPublicCertPath = certificate["public_cert"],
                 PrivateCertPfxPath = certificate["webpay_cert"],
                 Password = certificate["password"]
             };
@@ -46,23 +43,17 @@ namespace TestWebpay
             string buyOrder;
             string token;
             string next_page;
-
             string tx_step = "";
 
            switch (action)
             {
-
                 default:
-
                     tx_step = "Init";
 
                     try
                     {
-
                         HttpContext.Current.Response.Write("<p style='font-weight: bold; font-size: 150%;'>Step: " + tx_step + "</p>");
-
                         next_page = sample_baseurl + "?action=queryshare";
-
                         var random = new Random();
 
                         /** Monto de la transacción */
@@ -96,7 +87,6 @@ namespace TestWebpay
                         if (result.token != null && result.token != "")
                         {
                             message = "Sesion iniciada con exito en Webpay";
-
                         }
                         else
                         {
@@ -105,33 +95,26 @@ namespace TestWebpay
 
                         HttpContext.Current.Response.Write("<p style='font-size: 100%; background-color:lightyellow;'><strong>request</strong></br></br>" + new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(request) + "</p>");
                         HttpContext.Current.Response.Write("<p style='font-size: 100%; background-color:lightgrey;'><strong>result</strong></br></br>" + new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(result) + "</p>");
-
                         HttpContext.Current.Response.Write("" + message + "</br></br>");
-
                         HttpContext.Current.Response.Write("<form action=" + next_page + " method='post'>");
                         HttpContext.Current.Response.Write("<input type='hidden' name='token_ws' value=" + result.token + ">");
                         HttpContext.Current.Response.Write("<input type='hidden' name='buyOrder' value=" + buyOrder + ">");
                         HttpContext.Current.Response.Write("<input type='submit' value='Continuar &raquo;'>");
                         HttpContext.Current.Response.Write("</form>");
-
                     }
                     catch (Exception ex)
                     {
                         HttpContext.Current.Response.Write("<p style='font-size: 100%; background-color:lightyellow;'><strong>request</strong></br></br>" + new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(request) + "</p>");
                         HttpContext.Current.Response.Write("<p style='font-size: 100%; background-color:lightgrey;'><strong>result</strong></br></br> Ocurri&oacute; un error en la transacci&oacute;n (Validar correcta configuraci&oacute;n de parametros). " + ex.Message + "</p>");
                     }
-
                     break;
 
                 case "queryshare":
-
                     tx_step = "Queryshare";
 
                     try
                     {
-
                         HttpContext.Current.Response.Write("<p style='font-weight: bold; font-size: 150%;'>Step: " + tx_step + "</p>");
-
                         next_page = sample_baseurl + "?action=authorize";
 
                         /** Obtiene Información POST */
@@ -164,35 +147,27 @@ namespace TestWebpay
 
                         HttpContext.Current.Response.Write("<p style='font-size: 100%; background-color:lightyellow;'><strong>request</strong></br></br>" + new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(request) + "</p>");
                         HttpContext.Current.Response.Write("<p style='font-size: 100%; background-color:lightgrey;'><strong>result</strong></br></br>" + new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(result) + "</p>");
-
                         HttpContext.Current.Response.Write("" + message + "</br></br>");
-
                         HttpContext.Current.Response.Write("<form action=" + next_page + " method='post'>");
-
-                         HttpContext.Current.Response.Write("<input type='hidden' name='buyOrder' value=" + buyOrder + ">");
-                         HttpContext.Current.Response.Write("<input type='hidden' name='token_ws' value=" + token + ">");
-                         HttpContext.Current.Response.Write("<input type='hidden' name='queryId' value=" + result.queryId + ">");
-                         HttpContext.Current.Response.Write("<input type='submit' value='Continuar &raquo;'>");
-                         HttpContext.Current.Response.Write("</form>");
-
+                        HttpContext.Current.Response.Write("<input type='hidden' name='buyOrder' value=" + buyOrder + ">");
+                        HttpContext.Current.Response.Write("<input type='hidden' name='token_ws' value=" + token + ">");
+                        HttpContext.Current.Response.Write("<input type='hidden' name='queryId' value=" + result.queryId + ">");
+                        HttpContext.Current.Response.Write("<input type='submit' value='Continuar &raquo;'>");
+                        HttpContext.Current.Response.Write("</form>");
                     }
                     catch (Exception ex)
                     {
                         HttpContext.Current.Response.Write("<p style='font-size: 100%; background-color:lightyellow;'><strong>request</strong></br></br>" + new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(request) + "</p>");
                         HttpContext.Current.Response.Write("<p style='font-size: 100%; background-color:lightgrey;'><strong>result</strong></br></br> Ocurri&oacute; un error en la transacci&oacute;n (Validar correcta configuraci&oacute;n de parametros). " + ex.Message + "</p>");
                     }
-
                     break;
 
                 case "authorize":
-
                     tx_step = "Authorize";
 
                     try
                     {
-
                         HttpContext.Current.Response.Write("<p style='font-weight: bold; font-size: 150%;'>Step: " + tx_step + "</p>");
-
                         next_page = sample_baseurl + "?action=end";
 
                         /** Obtiene Información POST */
@@ -224,39 +199,29 @@ namespace TestWebpay
                         /** Verificamos respuesta de inicio en webpay */
                         if (result.detailsOutput[0].responseCode == 0)
                         {
-
                             message = "Transacci&oacute;n realizada con exito en Webpay";
-
                         } else {
-
                             message = "webpay no disponible";
-
                         }
 
                         HttpContext.Current.Response.Write("<p style='font-size: 100%; background-color:lightyellow;'><strong>request</strong></br></br>" + new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(request) + "</p>");
                         HttpContext.Current.Response.Write("<p style='font-size: 100%; background-color:lightgrey;'><strong>result</strong></br></br>" + new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(result) + "</p>");
-
                         HttpContext.Current.Response.Write("" + message + "</br></br>");
                         HttpContext.Current.Response.Write("<form action=" + next_page + " method='post'><input type='hidden' name='buyOrder' value=" + buyOrder + "><input type='hidden' name='token_ws' value=" + token + "><input type='hidden' name='authorizationCode' value=" + result.detailsOutput[0].authorizationCode + "><input type='submit' value='Continuar &raquo;'></form>");
-
                     }
                     catch (Exception ex)
                     {
                         HttpContext.Current.Response.Write("<p style='font-size: 100%; background-color:lightyellow;'><strong>request</strong></br></br>" + new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(request) + "</p>");
                         HttpContext.Current.Response.Write("<p style='font-size: 100%; background-color:lightgrey;'><strong>result</strong></br></br> Ocurri&oacute; un error en la transacci&oacute;n (Validar correcta configuraci&oacute;n de parametros). " + ex.Message + "</p>");
                     }
-
                     break;
 
                 case "end":
-
                     tx_step = "End";
 
                     try
                     {
-
                         HttpContext.Current.Response.Write("<p style='font-weight: bold; font-size: 150%;'>Step: " + tx_step + "</p>");
-
                         next_page = sample_baseurl + "?action=nullify";
 
                         /** Obtiene Información POST */
@@ -279,26 +244,21 @@ namespace TestWebpay
 
                         HttpContext.Current.Response.Write("<p style='font-size: 100%; background-color:lightyellow;'><strong>request</strong></br></br>" + new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(request) + "</p>");
                         HttpContext.Current.Response.Write("<p style='font-size: 100%; background-color:lightgrey;'><strong>result</strong></br></br>" + new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(token) + "</p>");
-
                         HttpContext.Current.Response.Write("" + message + "</br></br>");
                         HttpContext.Current.Response.Write("<form action=" + next_page + " method='post'><input type='hidden' name='buyOrder' value=" + buyOrder + "><input type='hidden' name='token_ws' value=" + token + "><input type='hidden' name='idQueryShare' value=" + idQueryShare + "><input type='hidden' name='authorizationCode' value=" + authorizationCode + "><input type='submit' value='Anular Transacci&oacute;n &raquo;'></form>");
-
                     }
                     catch (Exception ex)
                     {
                         HttpContext.Current.Response.Write("<p style='font-size: 100%; background-color:lightyellow;'><strong>request</strong></br></br>" + new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(request) + "</p>");
                         HttpContext.Current.Response.Write("<p style='font-size: 100%; background-color:lightgrey;'><strong>result</strong></br></br> Ocurri&oacute; un error en la transacci&oacute;n (Validar correcta configuraci&oacute;n de parametros). " + ex.Message + "</p>");
                     }
-
                     break;
 
                 case "nullify":
-
                     tx_step = "nullify";
 
                     try
                     {
-
                         HttpContext.Current.Response.Write("<p style='font-weight: bold; font-size: 150%;'>Step: " + tx_step + "</p>");
 
                         /** Obtiene Información POST */
@@ -329,24 +289,17 @@ namespace TestWebpay
 
                         HttpContext.Current.Response.Write("<p style='font-size: 100%; background-color:lightyellow;'><strong>request</strong></br></br>" + new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(request) + "</p>");
                         HttpContext.Current.Response.Write("<p style='font-size: 100%; background-color:lightgrey;'><strong>result</strong></br></br>" + new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(result) + "</p>");
-
                         message = "Transacci&oacute;n Finalizada";
                         HttpContext.Current.Response.Write(message + "</br></br>");
-
                     }
                     catch (Exception ex)
                     {
                         HttpContext.Current.Response.Write("<p style='font-size: 100%; background-color:lightyellow;'><strong>request</strong></br></br>" + new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(request) + "</p>");
                         HttpContext.Current.Response.Write("<p style='font-size: 100%; background-color:lightgrey;'><strong>result</strong></br></br> Ocurri&oacute; un error en la transacci&oacute;n (Validar correcta configuraci&oacute;n de parametros). " + ex.Message + "</p>");
                     }
-
                     break;
-
             }
-
             HttpContext.Current.Response.Write("</br><a href='default.aspx'>&laquo; volver a index</a>");
-
         }
-  
     }
 }
