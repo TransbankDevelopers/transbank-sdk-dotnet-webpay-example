@@ -27,7 +27,7 @@ El ejemplo viene listo para correr usando Visual Studio:
 1. Abrir la solución `WebpayASPNetExample.sln` con Visual Studio
 2. Hacer clic derecho sobre el proyecto `WebpayASPNetExample`.
 3. Seleccionar la opción Establecer como proyecto de inicio.
-4. Clic derecho nuevamente sobre el proyecto OnepayMVCTest y seleccionar la opción Compilar.
+4. Clic derecho nuevamente sobre el proyecto `WebpayASPNetExample` y seleccionar la opción Compilar.
 5. Iniciar la aplicación (`ctrl + F5`) `Menú` -> `Debug` -> `Iniciar sin debug`
 
 Si todo ha salido bien deberías poder acceder al ejemplo en la url  `http://localhost:54128/` y probar los distintos productos de Webpay en ambiente de pruebas. Para hacer pruebas en dicho ambiente debes usar los siguientes datos:
