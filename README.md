@@ -24,7 +24,7 @@ git clone https://github.com/TransbankDevelopers/transbank-sdk-dotnet-webpay-exa
 
 El ejemplo viene listo para correr usando Visual Studio:
 
-1. Abrir la solución `WebpayASPNetExample.sln` con Visual Studio
+1. Abrir la solución `TransbankWebpayExample.sln` con Visual Studio
 2. Hacer clic derecho sobre el proyecto `WebpayASPNetExample`.
 3. Seleccionar la opción Establecer como proyecto de inicio.
 4. Clic derecho nuevamente sobre el proyecto `WebpayASPNetExample` y seleccionar la opción Compilar.
