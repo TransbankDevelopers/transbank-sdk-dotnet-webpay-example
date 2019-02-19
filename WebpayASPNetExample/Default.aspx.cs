@@ -2,10 +2,5 @@
 
 namespace TestWebpay
 {
-
-    public partial class Default : Page
-    {
-
-    }
-
+    public partial class Default : Page {}
 }
