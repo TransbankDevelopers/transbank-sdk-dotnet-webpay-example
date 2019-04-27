@@ -13,7 +13,7 @@ en tu computador:
 
 ## Clonar repositorio
 
-Primero deberas clonar este repositorio en tu computador:
+Primero deberás clonar este repositorio en tu computador:
 
 ````batch
 git clone https://github.com/TransbankDevelopers/transbank-sdk-dotnet-webpay-example.git
@@ -30,7 +30,7 @@ El ejemplo viene listo para correr usando Visual Studio:
 4. Clic derecho nuevamente sobre el proyecto `WebpayASPNetExample` y seleccionar la opción Compilar.
 5. Iniciar la aplicación (`ctrl + F5`) `Menú` -> `Debug` -> `Iniciar sin debug`
 
-Si todo ha salido bien deberías poder acceder al ejemplo en la url  `http://localhost:54128/` y probar los distintos productos de Webpay en ambiente de pruebas. Para hacer pruebas en dicho ambiente debes usar los siguientes datos:
+Si todo ha salido bien deberías poder acceder al ejemplo en la URL  `http://localhost:54128/` y probar los distintos productos de Webpay en ambiente de pruebas. Para hacer pruebas en dicho ambiente debes usar los siguientes datos:
 
 - Tarjeta: VISA
 - Número: 4051885600446623
