@@ -16,8 +16,16 @@ namespace TestWebpay
 
         protected void Page_Load()
         {
-            var configuration = Configuration.ForTestingWebpayPlusNormal();
-            
+            //var configuration = Configuration.ForTestingWebpayPlusNormal();
+            var configuration = new Configuration()
+            {
+                PrivateCertPfxPath = @"C:\WebpayPlusCLP.p12",
+                Environment = "INTEGRACION",
+                CommerceCode = "597020000540",
+                Password = "",
+                WebpayCertPath = Configuration.GetTestingPublicCertPath()
+            };
+
             /** Creacion Objeto Webpay */
             var transaction = new Webpay(configuration);
 
