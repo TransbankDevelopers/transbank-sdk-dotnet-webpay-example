@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Web;
 using Transbank.Webpay;
+using System.Web.Script.Serialization;
 
 namespace TestWebpay
 {
@@ -168,21 +169,33 @@ namespace TestWebpay
                     try
                     {
                         HttpContext.Current.Response.Write("<p style='font-weight: bold; font-size: 150%;'>Step: " + tx_step + "</p>");
-                        request.Add("", "");
-                        HttpContext.Current.Response.Write("<p style='font-size: 100%; background-color:lightyellow;'><strong>request</strong></br></br>" + new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(request) + "</p>");
-                        HttpContext.Current.Response.Write("<p style='font-size: 100%; background-color:lightgrey;'><strong>result</strong></br></br>" + new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(Request.Form["token_ws"]) + "</p>");
-                        message = "Transacci&oacute;n Finalizada";
+                        HttpContext.Current.Response.Write("<p style='font-size: 100%; background-color:lightyellow;'><strong>request</strong></br></br>" + new JavaScriptSerializer().Serialize(request) + "</p>");
+                        if (Request.Form["token_ws"] != null)
+                        {
+                            request.Add("", "");
+                            HttpContext.Current.Response.Write("<p style='font-size: 100%; background-color:lightgrey;'><strong>result</strong></br></br>" + new JavaScriptSerializer().Serialize(Request.Form["token_ws"]) + "</p>");
+                            message = "Transacci&oacute;n Finalizada";
+                            string next_page = sample_baseurl + "?action=nullify";
+                            HttpContext.Current.Response.Write("<form action=" + next_page + " method='post'><input type='hidden' name='commercecode' id='commercecode' value=''><input type='hidden' name='authorizationCode' id='authorizationCode' value=''><input type='hidden' name='amount' id='amount' value=''><input type='hidden' name='buyOrder' id='buyOrder' value=''><input type='submit' value='Anular Transacci&oacute;n &raquo;'></form>");
+                            HttpContext.Current.Response.Write("<script>var commercecode = localStorage.getItem('commercecode');document.getElementById('commercecode').value = commercecode;</script>");
+                            HttpContext.Current.Response.Write("<script>var authorizationCode = localStorage.getItem('authorizationCode');document.getElementById('authorizationCode').value = authorizationCode;</script>");
+                            HttpContext.Current.Response.Write("<script>var amount = localStorage.getItem('amount');document.getElementById('amount').value = amount;</script>");
+                            HttpContext.Current.Response.Write("<script>var buyOrder = localStorage.getItem('buyOrder');document.getElementById('buyOrder').value = buyOrder;</script>");
+                        } else if (Request.Form["TBK_TOKEN"] != null)
+                        {
+                            HttpContext.Current.Response.Write("<p style='font-size: 100%; background-color:lightgrey;'><strong>result</strong></br></br>");
+                            foreach (string key in Request.Form.AllKeys)
+                            {
+                                HttpContext.Current.Response.Write("[" + key + "] = " + Request.Form[key] + "<br>");
+                            }
+                            HttpContext.Current.Response.Write("</p>");
+                            message = "Transacci&oacute;n Abortada";
+                        }
                         HttpContext.Current.Response.Write(message + "</br></br>");
-                        string next_page = sample_baseurl + "?action=nullify";
-                        HttpContext.Current.Response.Write("<form action=" + next_page + " method='post'><input type='hidden' name='commercecode' id='commercecode' value=''><input type='hidden' name='authorizationCode' id='authorizationCode' value=''><input type='hidden' name='amount' id='amount' value=''><input type='hidden' name='buyOrder' id='buyOrder' value=''><input type='submit' value='Anular Transacci&oacute;n &raquo;'></form>");
-                        HttpContext.Current.Response.Write("<script>var commercecode = localStorage.getItem('commercecode');document.getElementById('commercecode').value = commercecode;</script>");
-                        HttpContext.Current.Response.Write("<script>var authorizationCode = localStorage.getItem('authorizationCode');document.getElementById('authorizationCode').value = authorizationCode;</script>");
-                        HttpContext.Current.Response.Write("<script>var amount = localStorage.getItem('amount');document.getElementById('amount').value = amount;</script>");
-                        HttpContext.Current.Response.Write("<script>var buyOrder = localStorage.getItem('buyOrder');document.getElementById('buyOrder').value = buyOrder;</script>");
                     }
                     catch (Exception ex)
                     {
-                        HttpContext.Current.Response.Write("<p style='font-size: 100%; background-color:lightyellow;'><strong>result</strong></br></br>" + new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(request) + "</p>");
+                        HttpContext.Current.Response.Write("<p style='font-size: 100%; background-color:lightyellow;'><strong>result</strong></br></br>" + new JavaScriptSerializer().Serialize(request) + "</p>");
                         HttpContext.Current.Response.Write("<p style='font-size: 100%; background-color:lightgrey;'><strong>result</strong></br></br> Ocurri&oacute; un error en la transacci&oacute;n (Validar correcta configuraci&oacute;n de parametros). " + ex.Message + "</p>");
                     }
                     break;
