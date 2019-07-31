@@ -8,6 +8,9 @@
 *.user
 *.userosscache
 *.sln.docstates
+tests/cypress/videos/*
+tests/cypress/screenshots/*
+*.DS_Store
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

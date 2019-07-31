@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Default</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ItemType>GenericProject</ItemType>
+    <ProjectGuid>{D0FABB66-564C-4B67-93B3-A06AA63E1EA1}</ProjectGuid>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Default|AnyCPU' ">
+    <OutputPath>.\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="cypress.json" />
+    <None Include="docker-compose.yml" />
+    <None Include="package-lock.json" />
+    <None Include="package.json" />
+    <None Include="Tests.mdproj" />
+    <None Include="cypress\plugins\index.js" />
+    <None Include="cypress\integration\webpay_plus_deferred_spec.js" />
+    <None Include="cypress\integration\webpay_plus_mall_spec.js" />
+    <None Include="cypress\integration\webpay_oneclick_spec.js" />
+    <None Include="cypress\integration\webpay_plus_spec.js" />
+    <None Include="cypress\support\index.js" />
+    <None Include="cypress\support\commands.js" />
+    <None Include="cypress\fixtures\example.json" />
+  </ItemGroup>
+</Project>
