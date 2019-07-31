@@ -1,0 +1,19 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - 8080:8080
+  cypress:
+    image: cypress/included:3.4.0
+    depends_on:
+      - web
+    environment:
+      - CYPRESS_baseUrl=http://web:8080
+      - DEBUG=cypress:server
+      - CYPRESS_chromeWebSecurity=false
+      - CYPRESS_video=false
+      - ELECTRON_ENABLE_LOGGING=1
+    working_dir: /e2e
+    volumes:
+      - ./tests/:/e2e

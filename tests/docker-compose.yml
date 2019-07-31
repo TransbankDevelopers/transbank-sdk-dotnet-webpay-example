@@ -1,9 +1,0 @@
-version: '3'
-services:
-  cypress:
-    image: cypress/included:3.4.0
-    environment:
-      - CYPRESS_baseUrl=http://host.docker.internal:8080
-    working_dir: /e2e
-    volumes:
-      - .:/e2e

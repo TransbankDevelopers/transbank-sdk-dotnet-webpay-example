@@ -4,6 +4,9 @@ describe('Using Webpay Oneclick', function() {
 
     cy.contains('webpay OneClick').should('be.visible').click()
 
+    cy.window().then((win) => {
+      win.console.log(win.document.body.innerHTML)
+    })
     cy.contains('Continuar').should('be.visible').click()
 
     // Formulario Tarjeta de Crédito
