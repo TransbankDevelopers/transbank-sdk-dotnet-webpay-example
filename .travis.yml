@@ -2,4 +2,7 @@ language: minimal
 services:
   - docker
 script: 
-  - docker-compose up --build --exit-code-from cypress
+#  - docker-compose up --build --exit-code-from cypress
+  - NAME=$(basename "$PWD")
+  - docker build -t $NAME .
+  - docker run --rm -p 8080:8080 $NAME

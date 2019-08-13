@@ -338,3 +338,5 @@ ASALocalRun/
 .vscode
 coverage/
 opencover.xml
+
+package-lock.json
