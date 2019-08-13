@@ -3,6 +3,5 @@ services:
   - docker
 script: 
 #  - docker-compose up --build --exit-code-from cypress
-  - NAME=$(basename "$PWD")
-  - docker build -t $NAME .
-  - docker run --rm -p 8080:8080 $NAME
+  - IP=dig +short myip.opendns.com @resolver1.opendns.com
+  - echo $IP
