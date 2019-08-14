@@ -5,3 +5,4 @@ script:
 #  - docker-compose up --build --exit-code-from cypress
   - myip="$(dig +short myip.opendns.com @resolver1.opendns.com)"
   - echo "${myip}"
+  - docker-compose up --build --exit-code-from cypress
