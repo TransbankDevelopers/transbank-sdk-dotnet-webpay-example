@@ -88,8 +88,7 @@ namespace TestWebpay
                             stores.Add(entry.Value, new string[] {
                                 entry.Value,                     // storeCode
                                 random.Next(0, 1000).ToString(), // amount
-                                random.Next(0, 1000).ToString(), // buyOrder
-                                random.Next(0, 1000).ToString(), // sessionId 
+                                random.Next(0, 1000).ToString(), // buyOrder 
                             });
                         }
 
