@@ -42,9 +42,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Web.Services3, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Web.Services3.3.0.0.0\lib\net20\Microsoft.Web.Services3.dll</HintPath>
-    </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Security" />
@@ -74,6 +71,9 @@
     <Reference Include="MQTTnet">
       <HintPath>..\packages\MQTTnet.3.0.8\lib\net452\MQTTnet.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Web.Services3">
+      <HintPath>..\packages\Microsoft.Web.Services3.3.0.0.0\lib\net20\Microsoft.Web.Services3.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.aspx" />
@@ -87,6 +87,7 @@
     <Content Include="tbk-normal-capture.aspx" />
     <Content Include="tbk-oneclick.aspx" />
     <Content Include="Web.config" />
+    <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="certificates\cert-complete.cs" />
@@ -168,9 +169,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Properties\PublishProfiles\webpay-example - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\Webpay.pubxml" />
     <None Include="Properties\Settings.settings">
