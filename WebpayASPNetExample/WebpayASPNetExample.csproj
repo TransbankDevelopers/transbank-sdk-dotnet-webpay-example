@@ -14,6 +14,7 @@
     <RootNamespace>Transbank.NET</RootNamespace>
     <AssemblyName>Transbank.NET</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <RuntimeIdentifier>win</RuntimeIdentifier>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
