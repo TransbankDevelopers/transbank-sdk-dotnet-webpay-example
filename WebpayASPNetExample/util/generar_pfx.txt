@@ -1,0 +1,1 @@
+certutil -mergepfx 597034919178.crt 597034919178.pfx

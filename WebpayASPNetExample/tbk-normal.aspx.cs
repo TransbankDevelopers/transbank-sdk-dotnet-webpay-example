@@ -16,10 +16,21 @@ namespace TestWebpay
 
         protected void Page_Load()
         {
+            //Ejemplo para test
             var configuration = Configuration.ForTestingWebpayPlusNormal();
-            
+
+            /*
+            //Ejemplo para producción
+            var configuration = new Configuration();
+            configuration.Environment = "PRODUCCION";
+            configuration.CommerceCode = "597034919178";
+            configuration.PrivateCertPfxPath = @"D:/shared/soap/certificado_continuum/597034919178.pfx";
+            configuration.Password = "123456";*/
+
             /** Creacion Objeto Webpay */
             var transaction = new Webpay(configuration);
+
+            
 
             /** Información de Host para crear URL */
             var httpHost = HttpContext.Current.Request.ServerVariables["HTTP_HOST"].ToString();
@@ -69,13 +80,13 @@ namespace TestWebpay
                         var random = new Random();
 
                         /** Monto de la transacción */
-                        decimal amount = Convert.ToDecimal("9990");
+                        decimal amount = 50;//Convert.ToDecimal("9990");
 
                         /** Orden de compra de la tienda */
-                        buyOrder = random.Next(0, 1000).ToString();
+                        buyOrder = "ContinuumBuyOrder" + random.Next(0, 1000).ToString();
 
                         /** (Opcional) Identificador de sesión, uso interno de comercio */
-                        string sessionId = random.Next(0, 1000).ToString();
+                        string sessionId = "ContinuumSessionId" + random.Next(0, 1000).ToString();
 
                         /** URL Final */
                         string urlReturn = sample_baseurl + "?action=result";

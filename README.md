@@ -38,3 +38,14 @@ Si todo ha salido bien deberías poder acceder al ejemplo en la URL  `http://loc
 - CVV: 123
 - RUT autenticación con emisor: 11.111.111-1
 - Contraseña autenticación con emisor: 123
+
+
+# Generar archivo pfx (necesario para probar en producción)
+
+1. Para generar un archivo pfx es necesario descargar el siguiente utlitario 'https://www.digicert.com/support/tools/certificate-utility-for-windows'
+2. Colocar en la misma carpeta los archivos '.crt' y '.key' 
+3. Ejecutar desde la linea de comandos:
+
+````
+certutil -mergepfx 597034919178.crt 597034919178.pfx
+````
